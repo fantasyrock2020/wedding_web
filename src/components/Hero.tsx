@@ -7,7 +7,9 @@ export default function Hero() {
   const isDesktop = useIsDesktop();
   const { height } = useWindowSize();
 
-  const monogramText = `  ${groom.name}  &  ${bride.name}  •  ${weddingDate}  •`;
+  const groomName = groom.name.split(' ').at(-1)
+  const brideName = bride.name.split(' ').at(-1)
+  const monogramText = `  ${groomName}  &  ${brideName}  •  ${weddingDate}  •`;
 
   return (
     <section className="hero" style={{ height: height || '100vh' }}>
@@ -31,7 +33,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          {groom.name}
+          {groomName}
         </motion.h1>
 
         <motion.div
@@ -51,7 +53,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          {bride.name}
+          {brideName}
         </motion.h1>
 
         <motion.p

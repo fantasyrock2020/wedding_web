@@ -7,8 +7,8 @@ import gallery1Img from '../assets/images/gallery1.jpg';
 import gallery2Img from '../assets/images/gallery2.jpg';
 import weddingImg from '../assets/images/wedding.png';
 
-export const groom: Person = { name: 'Sang' };
-export const bride: Person = { name: 'Tiên' };
+export const groom: Person = { name: 'Trương Tấn Sang' };
+export const bride: Person = { name: 'Ngô Thị Thuỷ Tiên' };
 export const weddingDate = '20 . 12 . 2026';
 
 export const events: EventItem[] = [

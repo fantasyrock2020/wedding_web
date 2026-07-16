@@ -48,9 +48,6 @@ function App() {
       <Event />
       <Gallery />
       <RSVP />
-      <footer className="app__footer">
-        <p>Made with love — {new Date().getFullYear()}</p>
-      </footer>
     </div>
   );
 }
