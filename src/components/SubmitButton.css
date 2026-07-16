@@ -1,0 +1,34 @@
+.submit-button {
+  width: 100%;
+  height: 50px;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #D4AF37, #F5E6CA);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 200ms ease;
+}
+
+.submit-button:disabled {
+  cursor: default;
+}
+
+.submit-button__label {
+  font-weight: 700;
+  color: #191528;
+}
+
+.submit-button__spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(25, 21, 40, 0.25);
+  border-top-color: #191528;
+  border-radius: 50%;
+  animation: submit-spin 800ms linear infinite;
+}
+
+@keyframes submit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

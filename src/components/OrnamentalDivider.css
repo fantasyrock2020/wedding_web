@@ -1,0 +1,21 @@
+.ornamental-divider {
+  width: 200px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.ornamental-divider__line {
+  flex: 1;
+  height: 0.5px;
+}
+
+.ornamental-divider__diamond {
+  width: 8px;
+  height: 8px;
+  margin: 0 16px;
+  border: 0.5px solid;
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}

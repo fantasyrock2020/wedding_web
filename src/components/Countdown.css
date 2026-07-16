@@ -1,0 +1,92 @@
+.countdown {
+  width: 100%;
+  padding: 80px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.countdown--desktop {
+  padding: 140px 24px;
+}
+
+.countdown__gap {
+  height: 48px;
+}
+
+.countdown--desktop .countdown__gap {
+  height: 80px;
+}
+
+.countdown__row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.countdown__group {
+  display: contents;
+}
+
+.countdown-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 0 4px;
+  margin-top: 14px;
+}
+
+.countdown--desktop .countdown-divider {
+  padding: 0 16px;
+}
+
+.countdown-divider__dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(181, 154, 114, 0.5);
+}
+
+.time-block {
+  width: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.countdown--desktop .time-block {
+  width: 120px;
+}
+
+.time-block__value {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown--desktop .time-block__value {
+  font-size: 72px;
+}
+
+.time-block__rule {
+  width: 24px;
+  height: 0.5px;
+  background: rgba(181, 154, 114, 0.5);
+  margin: 16px 0 12px;
+}
+
+.time-block__label {
+  font-family: var(--font-body);
+  font-size: 9px;
+  letter-spacing: 4px;
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+.countdown--desktop .time-block__label {
+  font-size: 11px;
+}

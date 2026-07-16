@@ -1,0 +1,191 @@
+.hero {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #EDE7DA;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/src/assets/images/wedding.png');
+  background-size: cover;
+  background-position: center 30%;
+}
+
+.hero__bg-texture {
+  position: absolute;
+  inset: 0;
+  background-image: url('/src/assets/images/wedding.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.03;
+}
+
+.hero__content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero__content--mobile {
+  left: 32px;
+  right: 32px;
+  align-items: center;
+  text-align: center;
+}
+
+.hero__content--desktop {
+  left: 80px;
+  right: 45%;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.hero__eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hero__eyebrow-line {
+  width: 32px;
+  height: 0.5px;
+  background: var(--color-accent);
+}
+
+.hero__eyebrow {
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 6px;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+@media (min-width: 801px) {
+  .hero__eyebrow {
+    font-size: 14px;
+  }
+}
+
+.hero__name {
+  font-family: var(--font-display);
+  font-size: 58px;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 0.95;
+  color: #191528;
+  letter-spacing: -2px;
+  margin: 32px 0 4px;
+}
+
+@media (min-width: 801px) {
+  .hero__name {
+    font-size: 110px;
+    margin: 40px 0 8px;
+  }
+}
+
+.hero__ampersand-row {
+  display: flex;
+  align-items: center;
+  margin: 4px 0;
+}
+
+@media (min-width: 801px) {
+  .hero__ampersand-row {
+    margin: 8px 0;
+  }
+}
+
+.hero__ampersand-line {
+  width: 40px;
+  height: 0.5px;
+  background: var(--color-accent);
+}
+
+@media (min-width: 801px) {
+  .hero__ampersand-line {
+    width: 60px;
+  }
+}
+
+.hero__ampersand {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--color-accent);
+  padding: 0 24px;
+}
+
+@media (min-width: 801px) {
+  .hero__ampersand {
+    font-size: 40px;
+  }
+}
+
+.hero__date {
+  margin-top: 32px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  letter-spacing: 8px;
+  font-weight: 300;
+  color: #191528;
+}
+
+@media (min-width: 801px) {
+  .hero__date {
+    font-size: 16px;
+    margin-top: 48px;
+  }
+}
+
+.hero__monogram {
+  position: absolute;
+}
+
+.hero__monogram--desktop {
+  right: 20%;
+  bottom: 12%;
+}
+
+.hero__monogram--mobile {
+  left: 0;
+  right: 0;
+  bottom: 6%;
+  display: flex;
+  justify-content: center;
+}
+
+.monogram {
+  display: flex;
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero__scroll-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: #191528;
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 40px;
+  background: #191528;
+  display: block;
+}

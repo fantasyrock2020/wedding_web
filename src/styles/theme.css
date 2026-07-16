@@ -1,0 +1,30 @@
+:root {
+  --bg: #ffffff;
+  --text: #111;
+  --primary: #c59d5f;
+}
+
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --text: #f1f5f9;
+  --primary: #eab308;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.3s ease;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.section {
+  padding: 60px 0;
+  text-align: center;
+}

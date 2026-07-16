@@ -1,0 +1,126 @@
+.event {
+  width: 100%;
+}
+
+.event--desktop {
+  display: flex;
+  align-items: stretch;
+  border-top: 0.5px solid rgba(181, 154, 114, 0.4);
+  border-bottom: 0.5px solid rgba(181, 154, 114, 0.4);
+}
+
+.event--desktop > * {
+  flex: 1;
+}
+
+.event--mobile {
+  display: flex;
+  flex-direction: column;
+}
+
+.event-column {
+  padding: 64px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+.event-column--right {
+  border-right: 0.5px solid rgba(181, 154, 114, 0.4);
+}
+
+.event-column--top {
+  border-top: 0.5px solid rgba(181, 154, 114, 0.4);
+}
+
+.event-column--top-bottom {
+  border-top: 0.5px solid rgba(181, 154, 114, 0.4);
+  border-bottom: 0.5px solid rgba(181, 154, 114, 0.4);
+}
+
+.event-column__icon {
+  font-size: 28px;
+}
+
+.event-column__title {
+  margin-top: 24px;
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-style: italic;
+}
+
+.event-column__rule {
+  margin-top: 24px;
+  width: 32px;
+  height: 0.5px;
+  background: var(--color-accent);
+}
+
+.event-column__date {
+  margin-top: 32px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.event-column__time {
+  margin-top: 12px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--color-text-secondary);
+}
+
+.event-column__location {
+  margin-top: 32px;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.event-column__address {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  max-width: 280px;
+}
+
+.map-link {
+  margin-top: 40px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.map-link__row {
+  display: flex;
+  align-items: center;
+}
+
+.map-link__text {
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 4px;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.map-link__arrow {
+  color: var(--color-accent);
+  font-size: 16px;
+  transition: margin-left 300ms ease;
+}
+
+.map-link__underline {
+  margin-top: 4px;
+  height: 0.5px;
+  background: var(--color-accent);
+  transition: width 300ms ease;
+}

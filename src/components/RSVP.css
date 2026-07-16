@@ -1,0 +1,224 @@
+.rsvp {
+  position: relative;
+  width: 100%;
+  padding: 80px 24px;
+  overflow: hidden;
+}
+
+@media (min-width: 801px) {
+  .rsvp {
+    padding: 160px 24px;
+  }
+}
+
+.rsvp__bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(26, 26, 24, 0.75), rgba(26, 26, 24, 0.75)),
+    url('/src/assets/images/story3.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.rsvp__center {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.rsvp__card-wrap {
+  width: 100%;
+  max-width: 700px;
+}
+
+.rsvp__card {
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 0.5px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+@media (min-width: 801px) {
+  .rsvp__card {
+    padding: 64px;
+  }
+}
+
+.rsvp__eyebrow {
+  margin-top: 40px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 8px;
+  color: #B59A72;
+  font-weight: 400;
+}
+
+.rsvp__title {
+  margin-top: 20px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 36px;
+  color: #fff;
+  line-height: 1.15;
+}
+
+@media (min-width: 801px) {
+  .rsvp__title {
+    font-size: 56px;
+  }
+}
+
+.rsvp__subtitle {
+  margin-top: 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.rsvp__card > .ornamental-divider:nth-of-type(2) {
+  margin-top: 40px;
+  margin-bottom: 48px;
+}
+
+.rsvp__toggle-row {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+}
+
+.toggle-button {
+  flex: 1;
+  padding: 18px 8px;
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 600;
+  transition: all 300ms ease;
+}
+
+.toggle-button--selected {
+  background: #B59A72;
+  border-color: #B59A72;
+  color: #fff;
+}
+
+.rsvp__form {
+  width: 100%;
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.rsvp__gift-label {
+  margin-top: 24px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 6px;
+  font-weight: 500;
+  color: #B59A72;
+}
+
+.rsvp__qr-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.rsvp__qr-row--desktop {
+  flex-direction: row;
+  justify-content: center;
+}
+
+.qr-card {
+  width: 240px;
+  padding: 24px;
+  border: 0.5px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qr-card__title {
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: 4px;
+  font-weight: 500;
+  color: #B59A72;
+}
+
+.qr-card__box {
+  margin-top: 20px;
+  width: 160px;
+  height: 160px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-card__icon {
+  font-size: 48px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.qr-card__name {
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.qr-card__account {
+  margin-top: 6px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+.rsvp__submit-gap {
+  height: 48px;
+}
+
+.rsvp__status-text {
+  font-family: var(--font-body);
+  font-size: 13px;
+  margin-top: 24px;
+  margin-bottom: -12px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.rsvp__status-text--checking {
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.rsvp__status-text--found {
+  color: #B59A72;
+  background: rgba(181, 154, 114, 0.1);
+  border: 0.5px solid rgba(181, 154, 114, 0.2);
+}
+
+.rsvp__status-text--error {
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  border: 0.5px solid rgba(255, 107, 107, 0.2);
+}
+

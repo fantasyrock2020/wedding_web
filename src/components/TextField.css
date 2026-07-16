@@ -1,0 +1,25 @@
+.c-textfield {
+  width: 100%;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 14px;
+  background: transparent;
+  border: none;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.15);
+  padding: 16px 0;
+  outline: none;
+  transition: border-color 200ms ease;
+}
+
+.c-textfield::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.c-textfield:focus {
+  border-bottom: 1px solid var(--color-accent);
+}
+
+.c-textfield--area {
+  resize: vertical;
+  font-family: var(--font-body);
+}
