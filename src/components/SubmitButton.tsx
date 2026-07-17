@@ -7,9 +7,10 @@ type SubmitState = 'idle' | 'loading' | 'success';
 
 interface SubmitButtonProps {
   onPressed: () => Promise<void>;
+  hasExistingData?: boolean;
 }
 
-export default function SubmitButton({ onPressed }: SubmitButtonProps) {
+export default function SubmitButton({ onPressed, hasExistingData }: SubmitButtonProps) {
   const [state, setState] = useState<SubmitState>('idle');
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -46,9 +47,23 @@ export default function SubmitButton({ onPressed }: SubmitButtonProps) {
       disabled={state !== 'idle'}
       whileTap={state === 'idle' ? { scale: 0.95 } : undefined}
     >
-      {state === 'loading' && <span className="submit-button__spinner" />}
-      {state === 'success' && <Checkmark />}
-      {state === 'idle' && <span className="submit-button__label">Confirm</span>}
+      {state === 'loading' && (
+        <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span className="submit-button__spinner" />
+          <span className="submit-button__label">Đang gửi</span>
+        </span>
+      )}
+      {state === 'success' && (
+        <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Checkmark />
+          <span className="submit-button__label">Đã gửi</span>
+        </span>
+      )}
+      {state === 'idle' && (
+        <span className="submit-button__label">
+          {hasExistingData ? 'Chỉnh sửa' : 'Xác nhận'}
+        </span>
+      )}
     </motion.button>
   );
 }

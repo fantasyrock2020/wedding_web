@@ -229,7 +229,7 @@ export default function RSVP() {
             </AnimatePresence>
 
             <div className="rsvp__submit-gap" />
-            <SubmitButton onPressed={handleSubmit} />
+            <SubmitButton onPressed={handleSubmit} hasExistingData={!!existingInvite} />
           </div>
         </div>
       </div>
