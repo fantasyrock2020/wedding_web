@@ -182,3 +182,50 @@
     border-right-color: var(--border);
   }
 }
+
+.floating-controls {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 1000;
+  display: flex;
+  gap: 8px;
+}
+
+.floating-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(181, 154, 114, 0.4);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--color-accent, #B59A72);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* transition: background 0.3s, transform 0.2s, border-color 0.3s; */
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.floating-btn:hover {
+  background: rgba(181, 154, 114, 0.15);
+  border-color: rgba(181, 154, 114, 0.7);
+  transform: scale(1.08);
+}
+
+.floating-btn:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 800px) {
+  .floating-controls {
+    bottom: 16px;
+    left: 16px;
+  }
+  .floating-btn {
+    width: 40px;
+    height: 40px;
+  }
+}

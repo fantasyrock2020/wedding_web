@@ -5,6 +5,7 @@ import Story from "./components/Story";
 import Event from "./components/Event";
 import Gallery from "./components/Gallery";
 import RSVP from "./components/RSVP";
+import BackgroundMusic from "./components/BackgroundMusic";
 import ThemeToggle from "./components/ThemeToggle";
 
 function App() {
@@ -42,7 +43,10 @@ function App() {
 
   return (
     <div data-theme={theme}>
-      <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+      <div className="floating-controls">
+        <BackgroundMusic />
+        <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+      </div>
       <Hero />
       <Story />
       <Event />
