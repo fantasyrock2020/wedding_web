@@ -74,7 +74,8 @@
   margin-top: 16px;
   padding: 0 16px;
   line-height: 1.8;
-  color: var(--color-text-secondary);
+  /* color: var(--color-text-secondary); */
+  color: color-mix(in srgb, var(--color-text-secondary) 90%, white 10%);
 }
 
 .story-block__subtitle--desktop {
@@ -107,7 +108,10 @@
   position: absolute;
   width: 450px;
   padding: 40px 60px;
-  background: rgba(251, 248, 243, 0.9);
+  /* background: rgba(251, 248, 243, 0.9); */
+  background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.08);
 }
 
 .story-block__text-pos--right {

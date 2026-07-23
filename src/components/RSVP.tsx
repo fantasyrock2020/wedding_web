@@ -11,6 +11,7 @@ import './RSVP.css';
 export default function RSVP() {
   const isDesktop = useIsDesktop();
   const [isGoing, setIsGoing] = useState(true);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -87,6 +88,8 @@ export default function RSVP() {
       createdAt: new Date().toISOString(),
       respondedAt: null,
     });
+
+    setShowSuccess(true);
   };
 
   return (
@@ -233,6 +236,41 @@ export default function RSVP() {
           </div>
         </div>
       </div>
+      <AnimatePresence>
+        {showSuccess && (
+          <motion.div
+            className="rsvp__popup-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="rsvp__popup"
+              initial={{ scale: 0.9, opacity: 0, y: 30 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 30 }}
+              transition={{ duration: 0.35 }}
+            >
+              <p className="rsvp__popup-title">
+                💍 Cảm ơn bạn!
+              </p>
+
+              <p className="rsvp__popup-message">
+                {isGoing
+                  ? 'Chúng tôi rất mong được đón tiếp bạn tại buổi lễ.'
+                  : 'Cảm ơn lời chúc ý nghĩa của bạn dành cho chúng tôi.'}
+              </p>
+
+              <button
+                className="rsvp__popup-button"
+                onClick={() => setShowSuccess(false)}
+              >
+                Đóng
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

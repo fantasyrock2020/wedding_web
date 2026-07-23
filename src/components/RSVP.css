@@ -222,3 +222,52 @@
   border: 0.5px solid rgba(255, 107, 107, 0.2);
 }
 
+/* Overlay */
+.rsvp__popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* Popup card */
+.rsvp__popup {
+  width: 90%;
+  max-width: 420px;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 0.5px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(40px);
+  text-align: center;
+}
+
+/* Title */
+.rsvp__popup-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: #fff;
+}
+
+/* Message */
+.rsvp__popup-message {
+  margin-top: 16px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+}
+
+/* Button */
+.rsvp__popup-button {
+  margin-top: 24px;
+  padding: 12px 24px;
+  background: #B59A72;
+  border: none;
+  color: #fff;
+  letter-spacing: 2px;
+  font-size: 12px;
+  cursor: pointer;
+}
