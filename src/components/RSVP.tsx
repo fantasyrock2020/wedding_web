@@ -22,6 +22,8 @@ export default function RSVP() {
   const [isChecking, setIsChecking] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const isLocked = !!existingInvite;
+
   // Auto-check for existing RSVP when phone number changes (9 to 11 digits)
   useEffect(() => {
     const delayDebounce = setTimeout(async () => {
@@ -113,33 +115,30 @@ export default function RSVP() {
 
             <OrnamentalDivider color="rgba(255,255,255,0.3)" />
 
-            <div className="rsvp__toggle-row">
-              <ToggleButton
-                title="SẼ THAM DỰ"
-                selected={isGoing}
-                onClick={() => {
-                  setIsGoing(true);
-                  setError(null);
-                }}
-              />
-              <ToggleButton
-                title="GỬI LỜI CHÚC"
-                selected={!isGoing}
-                onClick={() => {
-                  setIsGoing(false);
-                  setError(null);
-                }}
-              />
-            </div>
+            {!isLocked && (
+              <div className="rsvp__toggle-row">
+                <ToggleButton
+                  title="SẼ THAM DỰ"
+                  selected={isGoing}
+                  onClick={() => {
+                    setIsGoing(true);
+                    setError(null);
+                  }}
+                />
+                <ToggleButton
+                  title="GỬI LỜI CHÚC"
+                  selected={!isGoing}
+                  onClick={() => {
+                    setIsGoing(false);
+                    setError(null);
+                  }}
+                />
+              </div>
+            )}
 
             {isChecking && (
               <p className="rsvp__status-text rsvp__status-text--checking">
                 Đang tìm thông tin thiệp...
-              </p>
-            )}
-            {existingInvite && !isChecking && (
-              <p className="rsvp__status-text rsvp__status-text--found">
-                ✨ Đã tìm thấy phản hồi trước đó. Bạn có thể chỉnh sửa và gửi lại để cập nhật.
               </p>
             )}
             {error && (
@@ -148,91 +147,142 @@ export default function RSVP() {
               </p>
             )}
 
-            <AnimatePresence mode="wait">
-              {isGoing ? (
-                <motion.div
-                  key="going"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.4 }}
-                  className="rsvp__form"
-                >
-                  <CTextField
-                    hint="Tên của bạn"
-                    value={name}
-                    onChange={(val) => {
-                      setName(val);
-                      setError(null);
-                    }}
-                  />
-                  <CTextField
-                    hint="Số điện thoại"
-                    value={phone}
-                    onChange={(val) => {
-                      setPhone(val);
-                      setError(null);
-                    }}
-                    type="tel"
-                  />
-                  <CTextField
-                    hint="Số người tham dự"
-                    value={quantity}
-                    onChange={setQuantity}
-                    type="number"
-                    digitsOnly
-                  />
-                  <CTextField
-                    hint="Lời chúc gửi đến cô dâu chú rể..."
-                    value={wishing}
-                    onChange={setWishing}
-                    maxLines={4}
-                  />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="not_going"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.4 }}
-                  className="rsvp__form"
-                >
-                  <CTextField
-                    hint="Tên của bạn"
-                    value={name}
-                    onChange={(val) => {
-                      setName(val);
-                      setError(null);
-                    }}
-                  />
-                  <CTextField
-                    hint="Số điện thoại"
-                    value={phone}
-                    onChange={(val) => {
-                      setPhone(val);
-                      setError(null);
-                    }}
-                    type="tel"
-                  />
-                  <CTextField
-                    hint="Lời chúc gửi đến cô dâu chú rể..."
-                    value={wishing}
-                    onChange={setWishing}
-                    maxLines={4}
-                  />
+            {isLocked && !isChecking ? (
+              <div className="rsvp__locked">
+                <p className="rsvp__status-text rsvp__status-text--found">
+                  ✨ Bạn đã gửi phản hồi RSVP.
+                </p>
+                <p className="rsvp__status-text rsvp__status-text--warning">
+                  ⚠️ Thông tin đã gửi không thể chỉnh sửa. Vui lòng liên hệ trực tiếp với cô dâu chú rể nếu bạn cần thay đổi.
+                </p>
 
-                  <p className="rsvp__gift-label">HỘP MỪNG CƯỚI</p>
-                  <div className={`rsvp__qr-row ${isDesktop ? 'rsvp__qr-row--desktop' : ''}`}>
-                    <QRCard title="Nhà Gái" name="Linh Nguyễn" account="123456789 — Vietcombank" />
-                    <QRCard title="Nhà Trai" name="Huy Trần" account="987654321 — Techcombank" />
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                <div className="rsvp__summary">
+                  <p className="rsvp__summary-row">
+                    <span className="rsvp__summary-label">Tên:</span> {name}
+                  </p>
+                  <p className="rsvp__summary-row">
+                    <span className="rsvp__summary-label">Số điện thoại:</span> {phone}
+                  </p>
+                  <p className="rsvp__summary-row">
+                    <span className="rsvp__summary-label">Trạng thái:</span>{' '}
+                    {isGoing ? 'Sẽ tham dự' : 'Gửi lời chúc'}
+                  </p>
+                  {isGoing ? (
+                    <p className="rsvp__summary-row">
+                      <span className="rsvp__summary-label">Số người tham dự:</span> {quantity || '1'}
+                    </p>
+                  ) : (
+                    wishing && (
+                      <p className="rsvp__summary-row">
+                        <span className="rsvp__summary-label">Lời chúc:</span> {wishing}
+                      </p>
+                    )
+                  )}
+                </div>
 
-            <div className="rsvp__submit-gap" />
-            <SubmitButton onPressed={handleSubmit} hasExistingData={!!existingInvite} />
+                {!isGoing && (
+                  <>
+                    <p className="rsvp__gift-label">HỘP MỪNG CƯỚI</p>
+                    <div className={`rsvp__qr-row ${isDesktop ? 'rsvp__qr-row--desktop' : ''}`}>
+                      <QRCard title="Nhà Gái" name="Linh Nguyễn" account="123456789 — Vietcombank" />
+                      <QRCard title="Nhà Trai" name="Huy Trần" account="987654321 — Techcombank" />
+                    </div>
+                  </>
+                )}
+              </div>
+            ) : (
+              !isChecking && (
+                <AnimatePresence mode="wait">
+                  {isGoing ? (
+                    <motion.div
+                      key="going"
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -15 }}
+                      transition={{ duration: 0.4 }}
+                      className="rsvp__form"
+                    >
+                      <CTextField
+                        hint="Tên của bạn"
+                        value={name}
+                        onChange={(val) => {
+                          setName(val);
+                          setError(null);
+                        }}
+                      />
+                      <CTextField
+                        hint="Số điện thoại"
+                        value={phone}
+                        onChange={(val) => {
+                          setPhone(val);
+                          setError(null);
+                        }}
+                        type="tel"
+                      />
+                      <CTextField
+                        hint="Số người tham dự"
+                        value={quantity}
+                        onChange={setQuantity}
+                        type="number"
+                        digitsOnly
+                      />
+                      <CTextField
+                        hint="Lời chúc gửi đến cô dâu chú rể..."
+                        value={wishing}
+                        onChange={setWishing}
+                        maxLines={4}
+                      />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="not_going"
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -15 }}
+                      transition={{ duration: 0.4 }}
+                      className="rsvp__form"
+                    >
+                      <CTextField
+                        hint="Tên của bạn"
+                        value={name}
+                        onChange={(val) => {
+                          setName(val);
+                          setError(null);
+                        }}
+                      />
+                      <CTextField
+                        hint="Số điện thoại"
+                        value={phone}
+                        onChange={(val) => {
+                          setPhone(val);
+                          setError(null);
+                        }}
+                        type="tel"
+                      />
+                      <CTextField
+                        hint="Lời chúc gửi đến cô dâu chú rể..."
+                        value={wishing}
+                        onChange={setWishing}
+                        maxLines={4}
+                      />
+
+                      <p className="rsvp__gift-label">HỘP MỪNG CƯỚI</p>
+                      <div className={`rsvp__qr-row ${isDesktop ? 'rsvp__qr-row--desktop' : ''}`}>
+                        <QRCard title="Nhà Gái" name="Linh Nguyễn" account="123456789 — Vietcombank" />
+                        <QRCard title="Nhà Trai" name="Huy Trần" account="987654321 — Techcombank" />
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              )
+            )}
+
+            {!isLocked && !isChecking && (
+              <>
+                <div className="rsvp__submit-gap" />
+                <SubmitButton onPressed={handleSubmit} hasExistingData={!!existingInvite} />
+              </>
+            )}
           </div>
         </div>
       </div>
