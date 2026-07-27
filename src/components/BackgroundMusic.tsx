@@ -1,23 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
-import audioSrc from '../assets/audios/audio.mp3';
 import './BackgroundMusic.css';
+
+const audioSrc = '/audio.mp3'
 
 export default function BackgroundMusic() {
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
     audio.muted = true;
-    audio.volume = 0;
-    setTimeout(() => {
-      audio.play();
-      audio.muted = false;
-      audio.volume = 1.0;
-      setPlaying(true);
-    }, 1000);
+    audio.volume = 1.0;
   }, []);
 
   const toggleMusic = () => {
@@ -28,13 +23,14 @@ export default function BackgroundMusic() {
       audio.pause();
       setPlaying(false);
     } else {
+      audio.muted = false;
       audio.play().then(() => setPlaying(true)).catch(() => {});
     }
   };
 
   return (
     <>
-      <audio ref={audioRef} loop preload="auto" autoPlay={true}>
+      <audio ref={audioRef} loop preload="auto">
         <source src={audioSrc} />
       </audio>
       {/* Music toggle */}

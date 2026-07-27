@@ -1,11 +1,11 @@
 import type { EventItem, Person, StoryItem } from '../types';
 
-import story1Img from '../assets/images/story1.jpg';
-import story2Img from '../assets/images/story2.jpg';
-import story3Img from '../assets/images/story3.jpg';
-import gallery1Img from '../assets/images/gallery1.jpg';
-import gallery2Img from '../assets/images/gallery2.jpg';
-import weddingImg from '../assets/images/wedding.png';
+import story1Img from '/images/story1.jpg';
+import story2Img from '/images/story2.jpg';
+import story3Img from '/images/story3.jpg';
+import gallery1Img from '/images/gallery1.jpg';
+import gallery2Img from '/images/gallery2.jpg';
+import weddingImg from '/images/wedding.png';
 
 export const groom: Person = { name: 'Trương Tấn Sang' };
 export const bride: Person = { name: 'Ngô Thị Thuỷ Tiên' };
@@ -41,21 +41,33 @@ export const galleries: string[] = [
 
 export const stories: StoryItem[] = [
   {
-    title: 'Lần Đầu Gặp Gỡ',
+    title: 'Cơ Duyên Gặp Gỡ',
     subtitle:
-      'Một buổi chiều mùa thu năm 2019, hai chúng tôi tình cờ gặp nhau tại một quán cà phê nhỏ. Cuộc trò chuyện ngắn ngủi hôm ấy lại là khởi đầu cho một hành trình dài.',
+      'Chúng tôi gặp nhau tại cùng một công ty, giữa những ngày làm việc tưởng chừng như bình thường. Từ những lần trao đổi công việc, những câu chào hỏi xã giao, mọi thứ dần trở nên thân quen hơn mà chính chúng tôi cũng không nhận ra.',
     image: story1Img,
   },
   {
-    title: 'Ngày Chúng Tôi Yêu',
+    title: 'Bắt Đầu Từ Một Ngày Đặc Biệt',
     subtitle:
-      'Sau nhiều lần hẹn hò, chúng tôi nhận ra mình muốn đi cùng nhau lâu dài. Mỗi khoảnh khắc bên nhau đều trở thành một kỷ niệm đáng trân trọng.',
+      'Ngày 06/12/2023, chúng tôi chính thức bắt đầu hẹn hò. Đó không phải là một ngày quá cầu kỳ, nhưng lại là cột mốc đánh dấu sự khởi đầu của một hành trình đầy cảm xúc — nơi hai trái tim quyết định hướng về nhau.',
     image: story2Img,
   },
   {
-    title: 'Lời Cầu Hôn',
+    title: 'Những Hành Trình Cùng Nhau',
     subtitle:
-      'Dưới ánh hoàng hôn trên bãi biển, anh đã quỳ xuống và trao cho em chiếc nhẫn cùng lời hứa về một tương lai chung. Đó là ngày không thể nào quên.',
+      'Chúng tôi đã cùng nhau đi qua nhiều nơi, từ những chuyến đi ngắn ngày như Vũng Tàu, đến hành trình chinh phục Núi Bà Đen (Tây Ninh), hay những ngày đầy nắng gió tại Phan Thiết - Mũi Né. Mỗi chuyến đi không chỉ là khám phá, mà còn là những kỷ niệm giúp chúng tôi hiểu và thương nhau nhiều hơn.',
     image: story3Img,
+  },
+  {
+    title: 'Cùng Nhau Trưởng Thành',
+    subtitle:
+      'Không chỉ có niềm vui, chúng tôi cũng đã cùng nhau trải qua những lúc khó khăn, những cảm xúc thăng trầm trong cuộc sống. Chính những điều đó đã giúp cả hai học cách lắng nghe, thấu hiểu và trân trọng nhau hơn mỗi ngày.',
+    image: gallery1Img,
+  },
+  {
+    title: 'Lời Hứa Trọn Đời',
+    subtitle:
+      'Và khi nhận ra rằng đối phương chính là người mình muốn đồng hành suốt cuộc đời, chúng tôi đã quyết định bước sang một chương mới. Một hành trình không chỉ có tình yêu, mà còn là sự gắn bó, sẻ chia và cùng nhau xây dựng một mái ấm hạnh phúc.',
+    image: weddingImg,
   },
 ];

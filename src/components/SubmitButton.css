@@ -1,30 +1,78 @@
 .submit-button {
   width: 100%;
-  height: 50px;
+  height: 54px;
   border-radius: 30px;
-  background: linear-gradient(90deg, #D4AF37, #F5E6CA);
+  background: linear-gradient(135deg, #B59A72 0%, #D4AF37 50%, #B59A72 100%);
+  background-size: 200% auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 200ms ease;
+  transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 4px 16px rgba(181, 154, 114, 0.2),
+    0 0 0 0.5px rgba(212, 175, 55, 0.15) inset;
+}
+
+.submit-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
+  transition: left 600ms ease;
+}
+
+.submit-button:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.submit-button:hover:not(:disabled) {
+  background-position: right center;
+  box-shadow:
+    0 6px 28px rgba(181, 154, 114, 0.35),
+    0 0 0 0.5px rgba(212, 175, 55, 0.2) inset;
+  transform: translateY(-1px);
+}
+
+.submit-button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow:
+    0 2px 10px rgba(181, 154, 114, 0.2),
+    0 0 0 0.5px rgba(212, 175, 55, 0.15) inset;
 }
 
 .submit-button:disabled {
   cursor: default;
+  opacity: 0.85;
 }
 
 .submit-button__label {
   font-weight: 700;
-  color: #191528;
+  color: #1a1a18;
+  letter-spacing: 2px;
+  font-size: 12px;
+  position: relative;
+  z-index: 1;
 }
 
 .submit-button__spinner {
   width: 20px;
   height: 20px;
-  border: 2px solid rgba(25, 21, 40, 0.25);
-  border-top-color: #191528;
+  border: 2px solid rgba(25, 21, 40, 0.2);
+  border-top-color: #1a1a18;
   border-radius: 50%;
   animation: submit-spin 800ms linear infinite;
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes submit-spin {
