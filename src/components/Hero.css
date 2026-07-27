@@ -8,7 +8,6 @@
 .hero__bg {
   position: absolute;
   inset: 0;
-  background-image: url('/images/wedding.png');
   background-size: cover;
   background-position: center 30%;
 }
@@ -16,7 +15,6 @@
 .hero__bg-texture {
   position: absolute;
   inset: 0;
-  background-image: url('/images/wedding.png');
   background-size: cover;
   background-position: center;
   opacity: 0.03;

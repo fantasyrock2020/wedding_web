@@ -14,9 +14,6 @@
 .rsvp__bg {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(26, 26, 24, 0.75), rgba(26, 26, 24, 0.75)),
-    url('/images/story3.jpg');
   background-size: cover;
   background-position: center;
   z-index: 0;

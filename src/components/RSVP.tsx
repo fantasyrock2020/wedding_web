@@ -1,12 +1,17 @@
-import { useEffect, useState } from 'react';
-import { AnimatePresence, motion, type Variants } from 'framer-motion';
-import OrnamentalDivider from './OrnamentalDivider';
-import CTextField from './TextField';
-import SubmitButton from './SubmitButton';
-import { getLocalInvite, createInvite, getInvite } from '../services/inviteService';
-import { useIsDesktop } from '../hooks/useResponsive';
-import type { InvitePayload } from '../types';
-import './RSVP.css';
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
+import OrnamentalDivider from "./OrnamentalDivider";
+import CTextField from "./TextField";
+import SubmitButton from "./SubmitButton";
+import {
+  getLocalInvite,
+  createInvite,
+  getInvite,
+} from "../services/inviteService";
+import { useIsDesktop } from "../hooks/useResponsive";
+import type { InvitePayload } from "../types";
+import "./RSVP.css";
+import { rsvpImg } from "../data/content";
 
 const staggerContainer: Variants = {
   hidden: {},
@@ -18,10 +23,10 @@ export default function RSVP() {
   const [isGoing, setIsGoing] = useState(true);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [quantity, setQuantity] = useState('1');
-  const [wishing, setWishing] = useState('');
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [quantity, setQuantity] = useState("1");
+  const [wishing, setWishing] = useState("");
 
   const [existingInvite, setExistingInvite] = useState<any | null>(null);
   const [isChecking, setIsChecking] = useState(false);
@@ -39,18 +44,20 @@ export default function RSVP() {
         if (invitee) {
           setExistingInvite(invitee);
           // Pre-fill the form with existing RSVP data
-          setPhone(invitee.phone || '');
-          setName(invitee.name || '');
-          setIsGoing(invitee.status === 'going');
-          if (invitee.status === 'going') {
-            setQuantity(invitee.numberOfGuests ? String(invitee.numberOfGuests) : '1');
+          setPhone(invitee.phone || "");
+          setName(invitee.name || "");
+          setIsGoing(invitee.status === "going");
+          if (invitee.status === "going") {
+            setQuantity(
+              invitee.numberOfGuests ? String(invitee.numberOfGuests) : "1",
+            );
           }
-          setWishing(invitee.message || '');
+          setWishing(invitee.message || "");
         } else {
           setExistingInvite(null);
         }
       } catch (error) {
-        console.error('Error fetching invite:', error);
+        console.error("Error fetching invite:", error);
       } finally {
         setIsChecking(false);
       }
@@ -65,31 +72,31 @@ export default function RSVP() {
     const trimmedPhone = phone.trim();
 
     if (!trimmedName) {
-      setError('Vui lòng nhập tên của bạn.');
-      throw new Error('Name cannot be empty');
+      setError("Vui lòng nhập tên của bạn.");
+      throw new Error("Name cannot be empty");
     }
     if (!trimmedPhone) {
-      setError('Vui lòng nhập số điện thoại.');
-      throw new Error('Phone cannot be empty');
+      setError("Vui lòng nhập số điện thoại.");
+      throw new Error("Phone cannot be empty");
     }
 
     const result = await getInvite(trimmedPhone);
     if (result) {
-      setError('Số điện thoại này đã được đăng ký RSVP.');
-      throw new Error('Invite already exists');
+      setError("Số điện thoại này đã được đăng ký RSVP.");
+      throw new Error("Invite already exists");
     }
 
     const payload: InvitePayload = {
       name: trimmedName,
       phone: trimmedPhone,
-      status: isGoing ? 'going' : 'not_going',
-      message: wishing || 'Chúc hai bạn hạnh phúc trọn vẹn!',
+      status: isGoing ? "going" : "not_going",
+      message: wishing || "Chúc hai bạn hạnh phúc trọn vẹn!",
       numberOfGuests: isGoing ? Number(quantity) || 1 : undefined,
     };
 
     await createInvite(payload);
 
-    setWishing(payload.message || '');
+    setWishing(payload.message || "");
     setExistingInvite({
       ...payload,
       createdAt: new Date().toISOString(),
@@ -101,7 +108,12 @@ export default function RSVP() {
 
   return (
     <div className="rsvp">
-      <div className="rsvp__bg" />
+      <div
+        className="rsvp__bg"
+        style={{
+          backgroundImage: `linear-gradient(rgba(26, 26, 24, 0.75), rgba(26, 26, 24, 0.75)), url(${rsvpImg})`,
+        }}
+      />
       <div className="rsvp__center">
         <div className="rsvp__card-wrap">
           <motion.div
@@ -114,7 +126,8 @@ export default function RSVP() {
             <OrnamentalDivider color="rgba(255,255,255,0.3)" />
 
             <p className="rsvp__eyebrow">RSVP</p>
-            <h2 className="rsvp__title">Xác Nhận
+            <h2 className="rsvp__title">
+              Xác Nhận
               <br />
               Tham Dự
             </h2>
@@ -125,10 +138,9 @@ export default function RSVP() {
             </p>
 
             <OrnamentalDivider color="rgba(255,255,255,0.3)" />
-            <p
-              className="rsvp__status-text rsvp__status-text--warning"
-            >
-              ⚠️ Lưu ý: Thông tin sau khi gửi sẽ không thể chỉnh sửa. Vui lòng kiểm tra kỹ trước khi gửi.
+            <p className="rsvp__status-text rsvp__status-text--warning">
+              ⚠️ Lưu ý: Thông tin sau khi gửi sẽ không thể chỉnh sửa. Vui lòng
+              kiểm tra kỹ trước khi gửi.
             </p>
             {!isLocked && (
               <div className="rsvp__toggle-row">
@@ -181,7 +193,8 @@ export default function RSVP() {
                   <span className="rsvp__success-icon">✅</span>
                   <p className="rsvp__success-title">Gửi thành công!</p>
                   <p className="rsvp__success-message">
-                    Cảm ơn bạn đã xác nhận. Thông tin RSVP của bạn đã được ghi nhận.
+                    Cảm ơn bạn đã xác nhận. Thông tin RSVP của bạn đã được ghi
+                    nhận.
                   </p>
                 </div>
 
@@ -191,26 +204,48 @@ export default function RSVP() {
                     <span className="rsvp__summary-label">Tên</span> {name}
                   </p>
                   <p className="rsvp__summary-row">
-                    <span className="rsvp__summary-label">Số điện thoại</span> {phone}
+                    <span className="rsvp__summary-label">Số điện thoại</span>{" "}
+                    {phone}
                   </p>
                   <p className="rsvp__summary-row">
-                    <span className="rsvp__summary-label">Trạng thái</span>{' '}
-                    {isGoing ? 'Sẽ tham dự' : 'Gửi lời chúc'}
+                    <span className="rsvp__summary-label">Trạng thái</span>{" "}
+                    {isGoing ? "Sẽ tham dự" : "Gửi lời chúc"}
                   </p>
                   <p className="rsvp__summary-row">
-                    <span className="rsvp__summary-label">Số người tham dự</span> {quantity || '1'}
+                    <span className="rsvp__summary-label">
+                      Số người tham dự
+                    </span>{" "}
+                    {quantity || "1"}
                   </p>
                   <p className="rsvp__summary-row">
-                    <span className="rsvp__summary-label">Lời chúc</span> {wishing}
+                    <span className="rsvp__summary-label">Lời chúc</span>{" "}
+                    {wishing}
                   </p>
                 </div>
 
                 {!isGoing && (
-                  <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
                     <p className="rsvp__gift-label">HỘP MỪNG CƯỚI</p>
-                    <div className={`rsvp__qr-row ${isDesktop ? 'rsvp__qr-row--desktop' : ''}`}>
-                      <QRCard title="Nhà Gái" name="Linh Nguyễn" account="123456789 — Vietcombank" />
-                      <QRCard title="Nhà Trai" name="Huy Trần" account="987654321 — Techcombank" />
+                    <div
+                      className={`rsvp__qr-row ${isDesktop ? "rsvp__qr-row--desktop" : ""}`}
+                    >
+                      <QRCard
+                        title="Nhà Gái"
+                        name="Linh Nguyễn"
+                        account="123456789 — Vietcombank"
+                      />
+                      <QRCard
+                        title="Nhà Trai"
+                        name="Huy Trần"
+                        account="987654321 — Techcombank"
+                      />
                     </div>
                   </div>
                 )}
@@ -292,9 +327,19 @@ export default function RSVP() {
                       />
 
                       <p className="rsvp__gift-label">HỘP MỪNG CƯỚI</p>
-                      <div className={`rsvp__qr-row ${isDesktop ? 'rsvp__qr-row--desktop' : ''}`}>
-                        <QRCard title="Nhà Gái" name="Linh Nguyễn" account="123456789 — Vietcombank" />
-                        <QRCard title="Nhà Trai" name="Huy Trần" account="987654321 — Techcombank" />
+                      <div
+                        className={`rsvp__qr-row ${isDesktop ? "rsvp__qr-row--desktop" : ""}`}
+                      >
+                        <QRCard
+                          title="Nhà Gái"
+                          name="Linh Nguyễn"
+                          account="123456789 — Vietcombank"
+                        />
+                        <QRCard
+                          title="Nhà Trai"
+                          name="Huy Trần"
+                          account="987654321 — Techcombank"
+                        />
                       </div>
                     </motion.div>
                   )}
@@ -303,9 +348,12 @@ export default function RSVP() {
             )}
 
             {!isLocked && !isChecking && (
-              <div style={{ width: '100%' }}>
+              <div style={{ width: "100%" }}>
                 <div className="rsvp__submit-gap" />
-                <SubmitButton onPressed={handleSubmit} hasExistingData={!!existingInvite} />
+                <SubmitButton
+                  onPressed={handleSubmit}
+                  hasExistingData={!!existingInvite}
+                />
               </div>
             )}
           </motion.div>
@@ -326,14 +374,12 @@ export default function RSVP() {
               exit={{ scale: 0.9, opacity: 0, y: 30 }}
               transition={{ duration: 0.35 }}
             >
-              <p className="rsvp__popup-title">
-                💍 Cảm ơn bạn!
-              </p>
+              <p className="rsvp__popup-title">💍 Cảm ơn bạn!</p>
 
               <p className="rsvp__popup-message">
                 {isGoing
-                  ? 'Chúng tôi rất mong được đón tiếp bạn tại buổi lễ.'
-                  : 'Cảm ơn lời chúc ý nghĩa của bạn dành cho chúng tôi.'}
+                  ? "Chúng tôi rất mong được đón tiếp bạn tại buổi lễ."
+                  : "Cảm ơn lời chúc ý nghĩa của bạn dành cho chúng tôi."}
               </p>
 
               <button
@@ -361,7 +407,7 @@ function ToggleButton({
 }) {
   return (
     <motion.button
-      className={`toggle-button ${selected ? 'toggle-button--selected' : ''}`}
+      className={`toggle-button ${selected ? "toggle-button--selected" : ""}`}
       onClick={onClick}
     >
       {title}
@@ -369,7 +415,15 @@ function ToggleButton({
   );
 }
 
-function QRCard({ title, name, account }: { title: string; name: string; account: string }) {
+function QRCard({
+  title,
+  name,
+  account,
+}: {
+  title: string;
+  name: string;
+  account: string;
+}) {
   return (
     <motion.div
       className="qr-card"

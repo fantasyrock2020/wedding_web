@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useIsDesktop, useWindowSize } from '../hooks/useResponsive';
 import './Hero.css';
-import { bride, groom, weddingDate } from '../data/content';
+import { bride, groom, weddingDate, weddingImg } from '../data/content';
 
 export default function Hero() {
   const isDesktop = useIsDesktop();
@@ -13,8 +13,8 @@ export default function Hero() {
 
   return (
     <section className="hero" style={{ height: height || '100vh' }}>
-      <div className="hero__bg" />
-      <div className="hero__bg-texture" />
+      <div className="hero__bg" style={{ backgroundImage: `url(${weddingImg})` }} />
+      <div className="hero__bg-texture" style={{ backgroundImage: `url(${weddingImg})` }} />
 
       <div className={`hero__content ${isDesktop ? 'hero__content--desktop' : 'hero__content--mobile'}`}>
         <motion.div

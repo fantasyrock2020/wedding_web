@@ -1,11 +1,19 @@
 import type { EventItem, Person, StoryItem } from '../types';
 
+// Story
 export const story1Img = '/images/story1.jpg';
 export const story2Img = '/images/story2.jpg';
 export const story3Img = '/images/story3.jpg';
+
+// Gallery
 export const gallery1Img = '/images/gallery1.jpg';
 export const gallery2Img = '/images/gallery2.jpg';
+
+// Main home background
 export const weddingImg = '/images/wedding.png';
+
+// RSVP background
+export const rsvpImg = '/images/story3.jpg';
 
 export const groom: Person = { name: 'Trương Tấn Sang' };
 export const bride: Person = { name: 'Ngô Thị Thuỷ Tiên' };
