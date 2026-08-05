@@ -23,10 +23,10 @@ export default function Event() {
         </div>
       ) : (
         <div className="event event--mobile">
-          <RevealOnScroll delay={200}>
+          <RevealOnScroll delay={200} duration={2500}>
             <EventColumn event={events[0]} borderSide="top" />
           </RevealOnScroll>
-          <RevealOnScroll delay={400}>
+          <RevealOnScroll delay={400} duration={2500}>
             <EventColumn event={events[1]} borderSide="top-bottom" />
           </RevealOnScroll>
         </div>

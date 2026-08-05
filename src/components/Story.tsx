@@ -34,7 +34,7 @@ function StoryBlock({
 
   if (!isDesktop) {
     return (
-      <RevealOnScroll>
+      <RevealOnScroll delay={300} duration={2000} offsetX={index % 2 == 0 ? 100 : -100}>
         <div className="story-block story-block--mobile">
           <div className="story-arch">
             <img src={item.image} alt={item.title} />

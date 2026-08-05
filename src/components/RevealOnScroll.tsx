@@ -5,6 +5,7 @@ interface RevealOnScrollProps {
   children: ReactNode;
   duration?: number;
   offsetY?: number;
+  offsetX?: number;
   delay?: number;
 }
 
@@ -15,18 +16,19 @@ interface RevealOnScrollProps {
 export default function RevealOnScroll({
   children,
   duration = 600,
-  offsetY = 30,
+  offsetY,
+  offsetX,
   delay = 0,
 }: RevealOnScrollProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: offsetY }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      initial={{ opacity: 0, y: offsetY, x: offsetX }}
+      whileInView={{ opacity: 1, y: 0, x: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
       transition={{
         duration: duration / 1000,
         delay: delay / 1000,
-        ease: [0.16, 1, 0.3, 1], // Smooth cubic-bezier curve (easeOutQuart)
+        ease: [0.16, 1, 0.3, 1],
       }}
       style={{ willChange: 'transform, opacity' }}
     >

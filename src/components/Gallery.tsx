@@ -44,7 +44,7 @@ export default function Gallery() {
     <Section header={<Header title="GALLERY" subtitle={'Khoảnh Khắc\nĐáng Nhớ'} />}>
       <div className="gallery">
         {galleries.map((src, index) => (
-          <RevealOnScroll key={src} delay={index * 50}>
+          <RevealOnScroll key={src} delay={index * 50} duration={Math.floor(Math.random() * 4000) + 1000}>
             <GalleryImage src={src} onClick={() => setSelectedIndex(index)} />
           </RevealOnScroll>
         ))}
